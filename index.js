@@ -1,5 +1,5 @@
-import path from 'path';
-import moment from 'moment';
+let path = require('path');
+let moment = require('moment');
 
 class Pingu {
   constructor(logLevel) {
@@ -112,6 +112,6 @@ class Pingu {
   }
 }
 
-const pingu = new Pingu('LOG');
+let pingu = new Pingu('LOG');
 
-export default pingu;
+module.exports = pingu;
