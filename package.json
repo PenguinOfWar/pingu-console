@@ -1,7 +1,7 @@
 {
   "name": "pingu-console",
   "version": "0.0.2",
-  "description": "Configurable console and file output for managing logging and log levels within console.* calls on universl JavaScript applications.",
+  "description": "Configurable console and file output for managing logging and log levels within console.* calls on universal JavaScript applications.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
