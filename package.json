@@ -1,6 +1,6 @@
 {
   "name": "pingu-console",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Configurable console and file output for managing logging and log levels within console.* calls on universal JavaScript applications.",
   "main": "index.js",
   "scripts": {
