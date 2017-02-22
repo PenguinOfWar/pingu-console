@@ -1,5 +1,5 @@
-let path = require('path');
-let moment = require('moment');
+var path = require('path');
+var moment = require('moment');
 
 class Pingu {
   constructor(logLevel) {
@@ -20,7 +20,7 @@ class Pingu {
     * set the log level without redefining the class
     */
 
-  setLogLevel = (level) => {
+  setLogLevel(level) {
     this.logLevel = level;
     console.log(`PINGU: Set log level to ${level}`);
   }
@@ -29,7 +29,7 @@ class Pingu {
     * check the log level
     */
 
-  checkLogLevel = () => {
+  checkLogLevel() {
     console.log(`PINGU: Log level is ${this.logLevel}`);
   }
 
@@ -37,7 +37,7 @@ class Pingu {
     * set the log directory without redefining the class
     */
 
-  setLogDir = (dir) => {
+  setLogDir(dir) {
     this.logDir = path.resolve(path.dirname(require.main.filename), dir);
     console.log(`PINGU: Set log directory to ${dir}`);
   }
@@ -46,12 +46,12 @@ class Pingu {
     * check the log directory
     */
 
-  checkLogDir = () => {
+  checkLogDir() {
     console.log(`PINGU: Log directory is ${this.logDir}`);
   }
 
-  log = (message) => {
-    let out = `PINGU [LOG]: ${message}`;
+  log(message) {
+     var out = `PINGU [LOG]: ${message}`;
     console.log(out);
 
     if(this.logLevel <= 1) {
@@ -60,8 +60,8 @@ class Pingu {
     }
   }
 
-  warn = (message) => {
-    let out = `PINGU [WARN]: ${message}`;
+  warn(message) {
+     var out = `PINGU [WARN]: ${message}`;
     console.warn(out);
     console.trace();
 
@@ -71,8 +71,8 @@ class Pingu {
     }
   }
 
-  error = (message) => {
-    let out = `PINGU [ERROR]: ${message}`;
+  error(message) {
+     var out = `PINGU [ERROR]: ${message}`;
     console.error(out);
     console.trace();
 
@@ -86,10 +86,10 @@ class Pingu {
     * write our messages to the
     */
 
-  writeLog = (message, type) => {
+  writeLog(message, type) {
     if(typeof window === 'undefined') {
-      let fs = require('fs');
-      let logFile = path.join(this.logDir, this.logFile);
+       var fs = require('fs');
+       var logFile = path.join(this.logDir, this.logFile);
 
       try {
 
@@ -97,12 +97,12 @@ class Pingu {
           fs.mkdirSync(this.logDir);
         }
 
-        let append = `[${moment().format()}] ${message}\r\n`;
+         var append = `[${moment().format()}] ${message}\r\n`;
 
         fs.appendFileSync(logFile, append);
 
         if(type !== 'log') {
-          let stack = new Error().stack;
+           var stack = new Error().stack;
           fs.appendFileSync(logFile, `${stack}\r\n`);
         }
       } catch(err) {
@@ -112,6 +112,6 @@ class Pingu {
   }
 }
 
-let pingu = new Pingu('LOG');
+ var pingu = new Pingu('LOG');
 
 module.exports = pingu;
