@@ -1,21 +1,19 @@
 import path from 'path';
+import moment from 'moment';
 
 class Pingu {
   constructor(logLevel) {
     /**
       * available levels are:
       *
-      * - LOG
-      * - WARN
-      * - ERROR
+      * - 1
+      * - 2
+      * - 3
       */
 
     this.logLevel = logLevel;
     this.logDir = path.resolve(path.dirname(require.main.filename), 'log');
-  }
-
-  boot = () => {
-    this.createLogDir(this.logDir);
+    this.logFile = 'pingu.log';
   }
 
   /**
@@ -53,11 +51,13 @@ class Pingu {
   }
 
   log = (message) => {
-    let out = `PINGU [ALL]: ${message}`;
+    let out = `PINGU [LOG]: ${message}`;
     console.log(out);
 
-    /* write log */
-    this.writeLog(out, 'log');
+    if(this.logLevel <= 1) {
+      /* write log */
+      this.writeLog(out, 'log');
+    }
   }
 
   warn = (message) => {
@@ -65,8 +65,10 @@ class Pingu {
     console.warn(out);
     console.trace();
 
-    /* write log */
-    this.writeLog(out, 'warn');
+    if(this.logLevel <= 2) {
+      /* write log */
+      this.writeLog(out, 'warn');
+    }
   }
 
   error = (message) => {
@@ -74,8 +76,10 @@ class Pingu {
     console.error(out);
     console.trace();
 
-    /* write log */
-    this.writeLog(out, 'error');
+    if(this.logLevel <= 3) {
+      /* write log */
+      this.writeLog(out, 'error');
+    }
   }
 
   /**
@@ -84,16 +88,26 @@ class Pingu {
 
   writeLog = (message, type) => {
     if(typeof window === 'undefined') {
-      //let fs = require('fs');
-      console.log('writing');
-      console.log(type);
-      console.log(message);
-      if(type !== 'log') {
-        let stack = new Error().stack;
-        console.log(stack);
+      let fs = require('fs');
+      let logFile = path.join(this.logDir, this.logFile);
+
+      try {
+
+        if (!fs.existsSync(this.logDir)) {
+          fs.mkdirSync(this.logDir);
+        }
+
+        let append = `[${moment().format()}] ${message}\r\n`;
+
+        fs.appendFileSync(logFile, append);
+
+        if(type !== 'log') {
+          let stack = new Error().stack;
+          fs.appendFileSync(logFile, `${stack}\r\n`);
+        }
+      } catch(err) {
+        throw err;
       }
-    } else {
-      console.log('not writing anything \'cos it\'s the client!');
     }
   }
 }
