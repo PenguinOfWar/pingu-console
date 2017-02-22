@@ -1,0 +1,32 @@
+{
+  "name": "pingu-console",
+  "version": "0.0.1",
+  "description": "Configurable console and file output for managing logging and log levels within console.* calls on universl JavaScript applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/penguinofwar/pingu-console.git"
+  },
+  "keywords": [
+    "console",
+    "pingu",
+    "node",
+    "logging",
+    "log",
+    "level",
+    "webpack"
+  ],
+  "author": "Darryl Walker <darryljwalker@gmail.com>",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "moment": "^2.17.1",
+    "path": "^0.12.7"
+  },
+  "bugs": {
+    "url": "https://github.com/penguinofwar/pingu-console/issues"
+  }
+}
