@@ -1,7 +1,7 @@
 var path = require('path');
 var moment = require('moment');
 
-class Pingu {
+var Pingu = class Pingu {
   constructor(logLevel) {
     /**
       * available levels are:
@@ -110,8 +110,8 @@ class Pingu {
       }
     }
   }
-}
+};
 
- var pingu = new Pingu('LOG');
+var pingu = new Pingu('LOG');
 
 module.exports = pingu;
