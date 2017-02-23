@@ -1,56 +1,46 @@
 var path = require('path');
 var moment = require('moment');
 
-var Pingu = class Pingu {
-  constructor(logLevel) {
-    /**
-      * available levels are:
-      *
-      * - 1
-      * - 2
-      * - 3
-      */
-
-    this.logLevel = logLevel;
-    this.logDir = path.resolve(path.dirname(require.main.filename), 'log');
-    this.logFile = 'pingu.log';
-  }
+var pingu = {
+  logLevel: 1,
+  logDir: path.resolve(path.dirname(require.main.filename), 'log'),
+  logFile: 'pingu.log',
 
   /**
     * set the log level without redefining the class
     */
 
-  setLogLevel(level) {
+  setLogLevel: function(level) {
     this.logLevel = level;
     console.log(`PINGU: Set log level to ${level}`);
-  }
+  },
 
   /**
     * check the log level
     */
 
-  checkLogLevel() {
+  checkLogLevel: function() {
     console.log(`PINGU: Log level is ${this.logLevel}`);
-  }
+  },
 
   /**
     * set the log directory without redefining the class
     */
 
-  setLogDir(dir) {
+  setLogDir: function(dir) {
     this.logDir = path.resolve(path.dirname(require.main.filename), dir);
     console.log(`PINGU: Set log directory to ${dir}`);
-  }
+  },
 
   /**
     * check the log directory
     */
 
-  checkLogDir() {
+  checkLogDir: function() {
     console.log(`PINGU: Log directory is ${this.logDir}`);
-  }
+  },
 
-  log(message) {
+  log: function(message) {
      var out = `PINGU [LOG]: ${message}`;
     console.log(out);
 
@@ -58,9 +48,9 @@ var Pingu = class Pingu {
       /* write log */
       this.writeLog(out, 'log');
     }
-  }
+  },
 
-  warn(message) {
+  warn: function(message) {
      var out = `PINGU [WARN]: ${message}`;
     console.warn(out);
     console.trace();
@@ -69,9 +59,9 @@ var Pingu = class Pingu {
       /* write log */
       this.writeLog(out, 'warn');
     }
-  }
+  },
 
-  error(message) {
+  error: function(message) {
      var out = `PINGU [ERROR]: ${message}`;
     console.error(out);
     console.trace();
@@ -80,13 +70,13 @@ var Pingu = class Pingu {
       /* write log */
       this.writeLog(out, 'error');
     }
-  }
+  },
 
   /**
     * write our messages to the
     */
 
-  writeLog(message, type) {
+  writeLog: function(message, type) {
     if(typeof window === 'undefined') {
        var fs = require('fs');
        var logFile = path.join(this.logDir, this.logFile);
@@ -111,7 +101,5 @@ var Pingu = class Pingu {
     }
   }
 };
-
-var pingu = new Pingu('LOG');
 
 module.exports = pingu;
