@@ -12,7 +12,7 @@ var pingu = {
 
   setLogLevel: function(level) {
     this.logLevel = level;
-    console.log(`PINGU: Set log level to ${level}`);
+    console.log('PINGU: Set log level to ' + level);
   },
 
   /**
@@ -20,7 +20,7 @@ var pingu = {
     */
 
   checkLogLevel: function() {
-    console.log(`PINGU: Log level is ${this.logLevel}`);
+    console.log('PINGU: Log level is ' + this.logLevel);
   },
 
   /**
@@ -29,7 +29,7 @@ var pingu = {
 
   setLogDir: function(dir) {
     this.logDir = path.resolve(path.dirname(require.main.filename), dir);
-    console.log(`PINGU: Set log directory to ${dir}`);
+    console.log('PINGU: Set log directory to ' + dir);
   },
 
   /**
@@ -37,11 +37,11 @@ var pingu = {
     */
 
   checkLogDir: function() {
-    console.log(`PINGU: Log directory is ${this.logDir}`);
+    console.log('PINGU: Log directory is ' + this.logDir);
   },
 
   log: function(message) {
-     var out = `PINGU [LOG]: ${message}`;
+     var out = 'PINGU [LOG]: ' + message;
     console.log(out);
 
     if(this.logLevel <= 1) {
@@ -51,7 +51,7 @@ var pingu = {
   },
 
   warn: function(message) {
-     var out = `PINGU [WARN]: ${message}`;
+     var out = 'PINGU [WARN]: ' + message;
     console.warn(out);
     console.trace();
 
@@ -62,7 +62,7 @@ var pingu = {
   },
 
   error: function(message) {
-     var out = `PINGU [ERROR]: ${message}`;
+     var out = 'PINGU [ERROR]: ' + message;
     console.error(out);
     console.trace();
 
@@ -87,13 +87,13 @@ var pingu = {
           fs.mkdirSync(this.logDir);
         }
 
-         var append = `[${moment().format()}] ${message}\r\n`;
+         var append = '[' + moment().format() + '] ' + message + '\r\n';
 
         fs.appendFileSync(logFile, append);
 
         if(type !== 'log') {
            var stack = new Error().stack;
-          fs.appendFileSync(logFile, `${stack}\r\n`);
+          fs.appendFileSync(logFile, stack + '\r\n');
         }
       } catch(err) {
         throw err;
