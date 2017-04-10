@@ -50,6 +50,17 @@ var pingu = {
     }
   },
 
+  dir: function(message) {
+    var out = 'PINGU [DIR]: ';
+    console.log(out);
+    console.dir(message);
+
+    if(this.logLevel <= 1) {
+      /* write log */
+      this.writeLog(JSON.stringify(message), 'log');
+    }
+  },
+
   warn: function(message) {
      var out = 'PINGU [WARN]: ' + message;
     console.warn(out);
