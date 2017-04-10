@@ -48,7 +48,7 @@ On the server, Pingu outputs to the console and writes output to the log file.
 console.log('Pingu is working!'); // => PINGU [LOG]: Pingu is working!
 ```
 
-Not limited to just `console.log`, you can also use the `warn` and `error` verbs.
+Not limited to just `console.log`, you can also use the `dir`, `warn` and `error` verbs.
 
 ```
 console.warn('Heads up, something isn\'t working!'); // => PINGU [WARN]: Heads up, something isn't working!
