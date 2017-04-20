@@ -1,5 +1,11 @@
 var path = require('path');
-var moment = require('moment');
+
+function addZero(i) {
+  if (i < 10) {
+    i = '0' + i;
+  }
+  return i;
+}
 
 var pingu = {
   logLevel: 1,
@@ -50,17 +56,6 @@ var pingu = {
     }
   },
 
-  dir: function(message) {
-    var out = 'PINGU [DIR]: ';
-    console.log(out);
-    console.dir(message);
-
-    if(this.logLevel <= 1) {
-      /* write log */
-      this.writeLog(JSON.stringify(message), 'log');
-    }
-  },
-
   warn: function(message) {
      var out = 'PINGU [WARN]: ' + message;
     console.warn(out);
@@ -89,8 +84,13 @@ var pingu = {
 
   writeLog: function(message, type) {
     if(typeof window === 'undefined') {
-       var fs = require('fs');
-       var logFile = path.join(this.logDir, this.logFile);
+      var fs = require('fs');
+      var logFile = path.join(this.logDir, this.logFile);
+
+      var now = new Date();
+      var date = now.getFullYear() + '-' + addZero(( now.getMonth() + 1 )) + '-' + addZero(now.getDate());
+      var time = addZero(now.getHours()) + ':' + addZero(now.getMinutes()) + ':' + addZero(now.getSeconds());
+      var dateTime = date + ' ' + time;
 
       try {
 
@@ -98,7 +98,7 @@ var pingu = {
           fs.mkdirSync(this.logDir);
         }
 
-         var append = '[' + moment().format() + '] ' + message + '\r\n';
+         var append = '[' + dateTime + '] ' + message + '\r\n';
 
         fs.appendFileSync(logFile, append);
 

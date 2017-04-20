@@ -23,7 +23,6 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "fs": "0.0.1-security",
-    "moment": "^2.17.1",
     "path": "^0.12.7"
   },
   "bugs": {
