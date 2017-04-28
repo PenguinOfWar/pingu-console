@@ -47,7 +47,7 @@ var pingu = {
   },
 
   log: function(message) {
-     var out = 'PINGU [LOG]: ' + message;
+    var out = 'PINGU [LOG]: ' + message;
     console.log(out);
 
     if(this.logLevel <= 1) {
@@ -55,9 +55,20 @@ var pingu = {
       this.writeLog(out, 'log');
     }
   },
+  
+  dir: function(message) {
+    var out = 'PINGU [DIR]: ';
+    console.log(out);
+    console.dir(message);
+
+    if(this.logLevel <= 1) {
+      /* write log */
+      this.writeLog(JSON.stringify(message), 'log');
+    }
+  },
 
   warn: function(message) {
-     var out = 'PINGU [WARN]: ' + message;
+    var out = 'PINGU [WARN]: ' + message;
     console.warn(out);
     console.trace();
 
@@ -68,7 +79,7 @@ var pingu = {
   },
 
   error: function(message) {
-     var out = 'PINGU [ERROR]: ' + message;
+    var out = 'PINGU [ERROR]: ' + message;
     console.error(out);
     console.trace();
 
