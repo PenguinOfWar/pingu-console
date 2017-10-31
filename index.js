@@ -67,6 +67,17 @@ var pingu = {
     }
   },
 
+  table: function(message) {
+    var out = 'PINGU [TABLE]: ';
+    console.log(out);
+    console.table(message);
+
+    if(this.logLevel <= 1) {
+      /* write log */
+      this.writeLog(JSON.stringify(message), 'log');
+    }
+  },
+
   warn: function(message) {
     var out = 'PINGU [WARN]: ' + message;
     console.warn(out);
