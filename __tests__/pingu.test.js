@@ -6,6 +6,11 @@ test('pingu.setLogLevel sets to and returns', () => {
   expect(pingu.checkLogLevel()).toBe(2);
 });
 
+test('pingu.setLogLevel will not set out of range', () => {
+  expect(pingu.setLogLevel(4)).toBe(false);
+  expect(pingu.setLogLevel(0)).toBe(false);
+});
+
 test('pingu.log returns', () => {
   expect(pingu.log('Jest')).toBe(true);
 });
