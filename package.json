@@ -1,6 +1,6 @@
 {
   "name": "pingu-console",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Configurable console and file output for managing logging and log levels within console.* calls on universal JavaScript applications.",
   "main": "index.js",
   "scripts": {
@@ -35,6 +35,8 @@
     "jest": "^24.8.0"
   },
   "jest": {
-    "setupFiles": ["<rootDir>/jest.setup.js"]
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ]
   }
 }
